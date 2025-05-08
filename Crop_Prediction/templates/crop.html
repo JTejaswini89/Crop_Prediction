@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background: #f4f4f4;
+        }
+        .container {
+            margin: auto;
+            padding: 20px;
+            background: ivory;
+            border: 1px solid black;
+            width: 500px;
+            height: 700px;
+            box-shadow: 0 0 15px black;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: yellowgreen;
+        }
+        label {
+            display: inline;
+            margin: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px black;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: deeppink;
+            color: white;
+            font-style: italic;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+        button:hover {
+            color: white;
+            box-shadow: 0 0 5px deeppink, 0 0 5px deeppink, 0 0 5px deeppink, 0 0 5px deeppink ;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <h1>Predicting the Crop</h1>
+
+            <label>Nitrogen in percentage:</label>
+            <input type="text" name="nitrogen" placeholder="Nitrogen"><br><br>
+
+            <label>Phosphorous in percentage:</label>
+            <input type="text" name="phosphorus" placeholder="Phosphorous"><br><br>
+
+            <label>Potassium in percentage:</label>
+            <input type="text" name="potassium" placeholder="Potassium"><br><br>
+
+            <label>Temperature in °C:</label>
+            <input type="text" name="temperature" placeholder="Temperature"><br><br>
+
+            <label>Humidity in %:</label>
+            <input type="text" name="humidity" placeholder="Humidity"><br><br>
+
+            <label>pH Value:</label>
+            <input type="text" name="ph" placeholder="pH"><br><br>
+
+            <label>Rainfall in mm:</label>
+            <input type="text" name="rainfall" placeholder="Rainfall"><br><br>
+        
+            <b><button type="submit">Predict</button></b>
+
+            <!-- Display the result -->
+            {% if Prediction %}
+                <h3 style="color: deeppink;">Predicted Crop: {{ Prediction }}</h3>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
